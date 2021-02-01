@@ -2,12 +2,10 @@ import zio._
 import zio.console.putStrLn
 
 object Main extends App {
-  import zio.Runtime
-  val runtime: Runtime[Any] = Runtime.default
-  // runtime: Runtime[Any] = zio.Runtime$$anon$3@f4e6c0e
-  class ExampleSpec3 extends FunSuite {
-    test("addition works") {
-      assert(runtime.unsafeRun(ZIO.succeed(1 + 1)) === 2)
-    }
-  }
+  val genUser: Gen[Random with Sized, User] = for {
+    name <- genName
+    age <- genAge
+  } yield User(name, age)
+  // genUser: Gen[Random with Sized, User] = Gen( // zio.stream.ZStream$$anon$1@695a724a
+  // )
 }
