@@ -2,6 +2,10 @@ import zio._
 import zio.console.putStrLn
 
 object Main extends App {
-  override def run(args: List[String]): URIO[zio.ZEnv, ExitCode] =
-    putStrLn("Welcome to your first ZIO app!").exitCode
+  val genUser: Gen[Random with Sized, User] = for {
+    name <- genName
+    age <- genAge
+  } yield User(name, age)
+  // genUser: Gen[Random with Sized, User] = Gen( // zio.stream.ZStream$$anon$1@695a724a
+  // )
 }
